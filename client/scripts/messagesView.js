@@ -12,7 +12,7 @@ var MessagesView = {
   },
 
   renderMessage: function(message) {
-    this.$chats.append();
+    this.$chats.append(MessageView.render);
   },
 
 };
