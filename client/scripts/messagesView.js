@@ -1,9 +1,10 @@
 var MessagesView = {
 
   $chats: $('#chats'),
+  $username: $('.username'),
 
   initialize: function() {
-    Parse.readAll();
+
   },
 
   render: function() {
@@ -11,7 +12,8 @@ var MessagesView = {
   },
 
   renderMessage: function(message) {
-    this.$chats.append(MessageView.render);
+    this.$chats.append(MessageView.render(message));
+    this.$username.on('click', Friends.toggleStatus());
   },
 
 };
