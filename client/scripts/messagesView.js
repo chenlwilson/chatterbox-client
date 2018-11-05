@@ -3,12 +3,11 @@ var MessagesView = {
   $chats: $('#chats'),
 
   initialize: function() {
-    $.ajax({
-
-    });
+    Parse.readAll();
   },
 
   render: function() {
+
   },
 
   renderMessage: function(message) {

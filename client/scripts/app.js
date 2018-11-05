@@ -21,9 +21,12 @@ var App = {
     Parse.readAll((data) => {
       // examine the response from the server request:
       console.log(data);
-
+      for (var i = 0; i < data.results.length; i++) {
+        MessagesView.renderMessage(data.results[i]);
+      }
       callback();
     });
+
   },
 
   startSpinner: function() {

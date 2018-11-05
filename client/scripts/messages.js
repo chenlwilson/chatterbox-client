@@ -6,12 +6,10 @@
 //   text: 'trololo',
 //   roomname: '4chan'
 // };
-//message = new Messages(username, text, roomname)
+
 
 var Messages = {
   //call render function from MessageView class
-  //
+
 
 };
-
-
