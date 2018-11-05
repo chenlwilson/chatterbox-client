@@ -4,6 +4,7 @@ var RoomsView = {
   $select: $('#rooms select'),
 
   initialize: function() {
+    RoomsView.$button.click(Rooms.add);
   },
 
   render: function() {
@@ -12,9 +13,5 @@ var RoomsView = {
   renderRoom: function(room) {
     this.$select.append('<option>room</option>');
   },
-
-  addRoom: function(room) {
-    this.$button.click()
-  }
 
 };
