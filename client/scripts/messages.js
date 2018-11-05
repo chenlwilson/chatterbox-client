@@ -1,3 +1,5 @@
+//test for dev branch
+
 //defines class of messages
 // var message = {
 //   username: 'shawndrost',
