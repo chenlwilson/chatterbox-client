@@ -8,9 +8,6 @@ var Rooms = {
       text: 'This is a brand new room!',
       roomname: roomname
     });
-  },
-  roomnames: {
-
   }
 
 };

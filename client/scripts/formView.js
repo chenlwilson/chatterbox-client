@@ -3,7 +3,7 @@ var FormView = {
   $form: $('form'),
 
   initialize: function() {
-    FormView.$form.on('submit', FormView.handleSubmit);
+    FormView.$form.on('submit', this.handleSubmit);
   },
 
   handleSubmit: function(event) {
@@ -15,8 +15,8 @@ var FormView = {
     };
     event.preventDefault();
     Parse.create(message);
-    App.fetch();
     console.log('click!');
+    App.fetch();
   },
 
   setStatus: function(active) {
