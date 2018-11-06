@@ -8,7 +8,12 @@ var FormView = {
 
   handleSubmit: function(event) {
     // Stop the browser from submitting the form
-    //event.preventDefault();
+    var message = {
+      username: App.username,
+      text: $('input[type=text]').val(),
+      roomname: RoomsView.$select.val()
+    }
+    event.preventDefault();
     Parse.create(message);
     App.fetch();
     console.log('click!');
