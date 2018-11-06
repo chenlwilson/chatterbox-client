@@ -12,7 +12,7 @@ var FormView = {
       username: App.username,
       text: $('input[type=text]').val(),
       roomname: RoomsView.$select.val()
-    }
+    };
     event.preventDefault();
     Parse.create(message);
     App.fetch();

@@ -4,14 +4,24 @@ var RoomsView = {
   $select: $('#rooms select'),
 
   initialize: function() {
-    RoomsView.$button.click(Rooms.add);
+    this.$button.on('click', Rooms.add);
   },
 
   render: function() {
+
   },
 
-  renderRoom: function(room) {
-    this.$select.append('<option>room</option>');
+  //var compiled = _.template("hello: <%= name %>");
+  // compiled({name: 'moe'});
+  // => "hello: moe"
+  renderRoom: function(message) {
+    var template = _.template(`
+      <option value ='<%= roomname %>'><%= roomname %></option>
+    `)
+    var escapedRoom = {
+      roomname: App.escape(message.roomname),
+    };
+    this.$select.append(template(escapedRoom));
   },
 
 };

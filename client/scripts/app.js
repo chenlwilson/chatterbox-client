@@ -23,6 +23,7 @@ var App = {
       console.log(data);
       for (var i = 0; i < data.results.length; i++) {
         MessagesView.renderMessage(data.results[i]);
+        RoomsView.renderRoom(data.results[i]);
       }
       callback();
     });
@@ -37,6 +38,22 @@ var App = {
   stopSpinner: function() {
     App.$spinner.fadeOut('fast');
     FormView.setStatus(false);
+  },
+
+  escape: function(string) {
+    var entityMap = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;',
+      '/': '&#x2F;',
+      '`': '&#x60;',
+      '=': '&#x3D;'
+    };
+    return String(string).replace(/[&<>"'`=\/]/g, function (s) {
+      return entityMap[s];
+    });
   }
 
 };
