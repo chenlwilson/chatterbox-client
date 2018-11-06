@@ -21,9 +21,18 @@ var App = {
     Parse.readAll((data) => {
       // examine the response from the server request:
       console.log(data);
+
+      var options = $('option');
+      var allRooms = $.map(options, function(room) {
+        return room.value;
+      });
       for (var i = 0; i < data.results.length; i++) {
+        var roomname = data.results[i].roomname;
         MessagesView.renderMessage(data.results[i]);
-        RoomsView.renderRoom(data.results[i]);
+
+        if(roomname !== null && allRooms.indexOf(roomname) === -1) {
+          RoomsView.renderRoom(data.results[i]);
+        }
       }
       callback();
     });

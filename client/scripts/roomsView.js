@@ -5,6 +5,7 @@ var RoomsView = {
 
   initialize: function() {
     this.$button.on('click', Rooms.add);
+    this.$select.on('change', RoomsView.render);
   },
 
   render: function() {
