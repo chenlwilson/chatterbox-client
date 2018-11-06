@@ -9,7 +9,6 @@
 
 
 var Messages = {
-  //call render function from MessageView class
 
 
 };

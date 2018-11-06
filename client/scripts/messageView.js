@@ -16,8 +16,8 @@ var MessageView = {
   // };
   render: _.template(`
       <div class="chat">
-        <div class="message"><%= message.text %></div>
-        <div class="username"><%= message.username %></div>
+        <div class="username"><%= username %></div>
+        <div class="message"><%= text %></div>       
         <div></div>
       </div>
     `)
