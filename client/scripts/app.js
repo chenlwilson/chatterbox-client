@@ -20,6 +20,13 @@ var App = {
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
       // examine the response from the server request:
+      //use for loop to parse message
+      for(var i=0; i<data.results.length; i++){
+        //call upon renderMessage func of class MessagesView
+        //extracts data from renderMessage output (aka the message)
+        MessagesView.renderMessage(data.results[i]);
+      }
+
       console.log(data);
 
       callback();
@@ -34,5 +41,25 @@ var App = {
   stopSpinner: function() {
     App.$spinner.fadeOut('fast');
     FormView.setStatus(false);
+  },
+
+  //escaping solution
+  escape: function(string) {
+    var entityMap = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;',
+      '/': '&#x2F;',
+      '`': '&#x60;',
+      '=': '&#x3D;'
+    };
+    return String(string).replace(/[&<>"'`=\/]/g, function (s) {
+      return entityMap[s];
+    });
   }
+  
 };
+
+
