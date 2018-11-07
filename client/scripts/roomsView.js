@@ -22,6 +22,7 @@ var RoomsView = {
   },
 
   render: function() {
+
   },
 
   renderRoom: function(room) {
@@ -32,7 +33,7 @@ var RoomsView = {
     //array.filter(function(item) {})
     //$( "li" ).filter( ":even" ).css( "background-color", "red" );
     //_.filter(message, Paser.readAll().results, function(result) {});
-    //if message has property roomname && message has property username 
+    //if message has property roomname && message has property username
     //&& message.roomname === roomname, render the message
 
     //Chen's idea:

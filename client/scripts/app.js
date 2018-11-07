@@ -14,6 +14,9 @@ var App = {
     // Fetch initial batch of messages
     App.startSpinner();
     App.fetch(App.stopSpinner);
+    setInterval(function() {
+      location.reload();
+    }, 60000);
 
   },
 
@@ -29,7 +32,11 @@ var App = {
       }
 
       console.log(data);
-
+      for (var i = 0; i < data.results.length; i++) {
+        var roomname = data.results[i].roomname;
+        MessagesView.renderMessage(data.results[i]);
+        RoomsView.renderRoom(data.results[i]);
+      }
       callback();
     });
   },
@@ -60,8 +67,5 @@ var App = {
       return entityMap[s];
     });
   }
-  
+
 };
-
-
-
