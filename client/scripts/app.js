@@ -25,6 +25,7 @@ var App = {
         //call upon renderMessage func of class MessagesView
         //extracts data from renderMessage output (aka the message)
         MessagesView.renderMessage(data.results[i]);
+        RoomsView.renderRoom(data.results[i]);
       }
 
       console.log(data);
@@ -61,5 +62,6 @@ var App = {
   }
   
 };
+
 
 

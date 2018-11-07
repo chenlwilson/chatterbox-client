@@ -3,9 +3,7 @@ var MessagesView = {
   $chats: $('#chats'),
 
   initialize: function() {
-    $.ajax({
-
-    });
+    MessagesView.$chats.on('submit', MessagesView.renderMessage);
   },
 
   render: function() {
