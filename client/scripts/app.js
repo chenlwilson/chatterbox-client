@@ -28,16 +28,22 @@ var App = {
       console.log(data);
       // examine the response from the server request:
       //use for loop to parse message
+
+      //Call RoomsView.uniqRooms to created
+      //an array of unique roomnames based on the fetched data
+      //Add Lobby as index[0]
       var uniqRooms = RoomsView.uniqRooms(data.results);
       uniqRooms.unshift('Lobby');
 
+      //Call Rooms.add to add all unique roomnames into select dropdown
+      //Lobby is always the first option (for display all messages)
       uniqRooms.forEach(function(room) {
         Rooms.add(room);
       });
 
       for(var i=0; i<data.results.length; i++){
-        //call upon renderMessage func of class MessagesView
-        //extracts data from renderMessage output (aka the message)
+        //Call renderMessage to display all messages from the fetched data
+        //the initial state is showing Lobby and displaying all messages
         MessagesView.renderMessage(data.results[i]);
       };
 
