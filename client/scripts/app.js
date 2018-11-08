@@ -4,14 +4,13 @@ var App = {
 
   username: 'anonymous',
 
-  friends: {},
-
   initialize: function() {
     App.username = window.location.search.substr(10);
 
     FormView.initialize();
     RoomsView.initialize();
     MessagesView.initialize();
+    Friends.initialize();
 
     // Fetch initial batch of messages
     App.startSpinner();
