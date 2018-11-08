@@ -20,16 +20,34 @@ var RoomsView = {
   },
 
   selectRoom: function() {
-    RoomsView.renderRoom(RoomsView.$select.val());
+    Parse.readAll((data) => {
+      RoomsView.renderRoom(RoomsView.$select.val(), data)
+    });
   },
 
   render: function() {
 
   },
 
-  renderRoom: function(roomname) {
-    //$('.chat').not($('.'+roomname)).remove();
+  uniqRooms: function(data) {
+    return _.uniq(_.map(data, function(message) {
+      return message.roomname;
+    }));
+  },
 
+  renderRoom: function(roomname, data) {
+    $('#chats').empty();
+    if(roomname === 'Lobby') {
+      for(var i=0; i<data.results.length; i++) {
+        MessagesView.renderMessage(data.results[i]);
+      }
+    } else {
+      for(var i=0; i<data.results.length; i++){
+        if(data.results[i].roomname === roomname) {
+          MessagesView.renderMessage(data.results[i]);
+        }
+      }
+    }
   }
 
 };

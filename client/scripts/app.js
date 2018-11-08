@@ -26,20 +26,18 @@ var App = {
       console.log(data);
       // examine the response from the server request:
       //use for loop to parse message
+      var uniqRooms = RoomsView.uniqRooms(data.results);
+      uniqRooms.unshift('Lobby');
+
+      uniqRooms.forEach(function(room) {
+        Rooms.add(room);
+      });
 
       for(var i=0; i<data.results.length; i++){
         //call upon renderMessage func of class MessagesView
         //extracts data from renderMessage output (aka the message)
         MessagesView.renderMessage(data.results[i]);
-      }
-
-      var uniqRooms = _.uniq(_.map(data.results, function(message) {
-          return message.roomname;
-        }));
-
-      uniqRooms.forEach(function(room) {
-        Rooms.add(room);
-      });
+      };
 
       callback();
     });
