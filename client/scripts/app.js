@@ -4,6 +4,8 @@ var App = {
 
   username: 'anonymous',
 
+  friends: {},
+
   initialize: function() {
     App.username = window.location.search.substr(10);
 

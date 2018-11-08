@@ -5,6 +5,7 @@ var MessagesView = {
 
   initialize: function() {
     MessagesView.$chats.on('submit', MessagesView.renderMessage);
+    MessagesView.addFriend();
   },
 
   render: function() {
@@ -20,10 +21,13 @@ var MessagesView = {
 
     //renders "cleaned up" message username & text
     this.$chats.append(MessageView.render(message));
-
+  },
     //we have message as a raw data that's not escaped
     //we want to escape username and text
-
-  },
+  addFriend: function() {
+    $('div').on('click', '.username', function() {
+      Friends.toggleStatus($(this));
+    });
+  }
 
 };
