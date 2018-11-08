@@ -43,16 +43,15 @@ var App = {
         Rooms.add(room);
       });
 
-      for(var i=0; i<data.results.length; i++){
+      for (var i = 0; i < data.results.length; i++) {
         //Call renderMessage to display all messages from the fetched data
         //the initial state is showing Lobby and displaying all messages
         MessagesView.renderMessage(data.results[i]);
-      };
+      }
 
       callback();
     });
   },
-
 
 
   startSpinner: function() {
