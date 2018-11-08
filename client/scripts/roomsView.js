@@ -15,6 +15,10 @@ var RoomsView = {
     var roomname = prompt('Enter a new room')
     Rooms.add(roomname);
     Rooms.submitNewRoom(roomname);
+    //change select value to the new room
+    //render messages in this new room
+    RoomsView.$select.val(roomname);
+    RoomsView.selectRoom();
   },
 
   selectRoom: function() {
@@ -24,13 +28,6 @@ var RoomsView = {
     Parse.readAll((data) => {
       RoomsView.renderRoom(RoomsView.$select.val(), data)
     });
-  },
-
-  uniqRooms: function(data) {
-    //create a list of unique rooms for rendering in the select dropdown
-    return _.uniq(_.map(data, function(message) {
-      return message.roomname;
-    }));
   },
 
   renderRoom: function(roomname, data) {

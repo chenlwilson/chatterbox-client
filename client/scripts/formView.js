@@ -1,34 +1,32 @@
 var FormView = {
-  //grabs form element in index.html (utilizing jquery $ symbol)
+
   $form: $('form'),
-  //when submit is clicked, handleSubmit function is run (invoked)
+  //get form element
+
   initialize: function() {
+    //event handler for form submit
     FormView.$form.on('submit', this.handleSubmit);
   },
-  //jquery has .on function that can be given a "click", "mouseover", etc
-  //event is the submit (input)
-  handleSubmit: function(event) {
-    // Stop the browser from submitting the form
-    //right now, it automatically submits the form, and
-    //event.preventDefault stops this default action
-    event.preventDefault();
 
+  handleSubmit: function(event) {
+    // Stop the browser from auto submitting the form
+    event.preventDefault();
     var message = {
+      //compose message format for form submit
       username: App.username,
       text: $( 'input[type=text]').val(),
       roomname: $('select').val()
     };
 
-    var clearAfterSubmit = function() {
-      $('#message').val('');
-      RoomsView.renderRoom($('select').val());
-    };
 
-    //create event that follows the click
-    Parse.create(message, clearAfterSubmit());
+    //send message to server
+    //upon submit, re-render messages in the room of form submit event
+    //clear form
+    Parse.create(message);
+    RoomsView.selectRoom();
+    FormView.$form.trigger('reset');
 
     console.log('click!');
-    App.fetch();
   },
 
   setStatus: function(active) {

@@ -29,10 +29,10 @@ var App = {
       // examine the response from the server request:
       //use for loop to parse message
 
-      //Call RoomsView.uniqRooms to created
+      //Call Rooms.uniqRooms to created
       //an array of unique roomnames based on the fetched data
       //Add Lobby as index[0]
-      var uniqRooms = RoomsView.uniqRooms(data.results);
+      var uniqRooms = Rooms.uniqRooms(data.results);
       uniqRooms.unshift('Lobby');
 
       //Call Rooms.add to add all unique roomnames into select dropdown
