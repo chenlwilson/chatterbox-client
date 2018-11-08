@@ -17,13 +17,13 @@ var MessagesView = {
     //security measures against xss attacks
     message.username = App.escape(message.username);
     message.text = App.escape(message.text);
+    message.roomname = App.escape(message.roomname);
 
     //renders "cleaned up" message username & text
     this.$chats.append(MessageView.render(message));
-
+  },
     //we have message as a raw data that's not escaped
     //we want to escape username and text
 
-  },
 
 };

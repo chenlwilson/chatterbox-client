@@ -5,14 +5,6 @@ var RoomsView = {
 
   //this function renders whatever is written in the renderRoom
   //input is what is selected (the dropdown of rooms)
-  handleAddButton: function() {
-    RoomsView.renderRoom(RoomsView.$select.val());
-  },
-
-  selectRoom: function() {
-    RoomsView.renderRoom(RoomsView.$select.val());
-  },
-
   initialize: function() {
     //event handler that manipulates button upon click
     //refers to line 3
@@ -21,27 +13,37 @@ var RoomsView = {
     RoomsView.$select.on('change', RoomsView.selectRoom);
   },
 
-  render: function() {
-
+  handleAddButton: function() {
+    var roomname = prompt('Enter a new room')
+    Rooms.add(roomname);
+    Rooms.submitNewRoom(roomname);
   },
 
-  renderRoom: function(room) {
-    //template roomname
-    //escape roomname
-    //goal: fetch data from server
-    //only display messages from chose chatroom
-    //array.filter(function(item) {})
-    //$( "li" ).filter( ":even" ).css( "background-color", "red" );
-    //_.filter(message, Paser.readAll().results, function(result) {});
-    //if message has property roomname && message has property username
-    //&& message.roomname === roomname, render the message
+  selectRoom: function() {
+    Parse.readAll((data) => {
+      RoomsView.renderRoom(RoomsView.$select.val(), data)
+    });
+  },
 
-    //Chen's idea:
-    //remove messages that don't belong in current chat room
-    //Do we even need to do this? ->
-    //Josh's Idea:
-    //remove ALL current messages in the chat box
-    this.$select.append('<option>room</option>');
+  uniqRooms: function(data) {
+    return _.uniq(_.map(data, function(message) {
+      return message.roomname;
+    }));
+  },
+
+  renderRoom: function(roomname, data) {
+    $('#chats').empty();
+    if(roomname === 'Lobby') {
+      for(var i=0; i<data.results.length; i++) {
+        MessagesView.renderMessage(data.results[i]);
+      }
+    } else {
+      for(var i=0; i<data.results.length; i++){
+        if(data.results[i].roomname === roomname) {
+          MessagesView.renderMessage(data.results[i]);
+        }
+      }
+    }
   }
 
 };

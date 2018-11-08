@@ -10,10 +10,13 @@ var App = {
     FormView.initialize();
     RoomsView.initialize();
     MessagesView.initialize();
+    Friends.initialize();
 
     // Fetch initial batch of messages
     App.startSpinner();
     App.fetch(App.stopSpinner);
+
+    //auto refresh every minute
     setInterval(function() {
       location.reload();
     }, 60000);
@@ -22,24 +25,27 @@ var App = {
 
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
+      console.log(data);
       // examine the response from the server request:
       //use for loop to parse message
-      for (var i = 0; i < data.results.length; i++) {
+      var uniqRooms = RoomsView.uniqRooms(data.results);
+      uniqRooms.unshift('Lobby');
+
+      uniqRooms.forEach(function(room) {
+        Rooms.add(room);
+      });
+
+      for(var i=0; i<data.results.length; i++){
         //call upon renderMessage func of class MessagesView
         //extracts data from renderMessage output (aka the message)
         MessagesView.renderMessage(data.results[i]);
-        RoomsView.renderRoom(data.results[i]);
-      }
+      };
 
-      console.log(data);
-      for (var i = 0; i < data.results.length; i++) {
-        var roomname = data.results[i].roomname;
-        MessagesView.renderMessage(data.results[i]);
-        RoomsView.renderRoom(data.results[i]);
-      }
       callback();
     });
   },
+
+
 
   startSpinner: function() {
     App.$spinner.show();
