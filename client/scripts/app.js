@@ -16,7 +16,7 @@ var App = {
     App.startSpinner();
     App.fetch(App.stopSpinner);
 
-    //auto refresh every minute
+    //auto refresh every 60 sec
     setInterval(function() {
       location.reload();
     }, 60000);
