@@ -15,6 +15,8 @@ var App = {
     // Fetch initial batch of messages
     App.startSpinner();
     App.fetch(App.stopSpinner);
+
+    //auto refresh every minute
     setInterval(function() {
       location.reload();
     }, 60000);

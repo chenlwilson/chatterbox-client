@@ -25,10 +25,6 @@ var RoomsView = {
     });
   },
 
-  render: function() {
-
-  },
-
   uniqRooms: function(data) {
     return _.uniq(_.map(data, function(message) {
       return message.roomname;
