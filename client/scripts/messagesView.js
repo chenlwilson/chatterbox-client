@@ -17,6 +17,7 @@ var MessagesView = {
     //security measures against xss attacks
     message.username = App.escape(message.username);
     message.text = App.escape(message.text);
+    message.roomname = App.escape(message.roomname);
 
     //renders "cleaned up" message username & text
     this.$chats.append(MessageView.render(message));

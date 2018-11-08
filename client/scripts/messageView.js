@@ -20,7 +20,7 @@ var MessageView = {
   // changed message to username (25)
   // changed message to text (26)
   render: _.template(`
-      <div class="chat">
+      <div class="chat <%= roomname %>">
         <div class="username <%= username %>"><%= username %></div>
         <div class="text"><%= text %></div>
         <div></div>

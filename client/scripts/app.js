@@ -23,24 +23,29 @@ var App = {
 
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
+      console.log(data);
       // examine the response from the server request:
       //use for loop to parse message
+
       for(var i=0; i<data.results.length; i++){
         //call upon renderMessage func of class MessagesView
         //extracts data from renderMessage output (aka the message)
         MessagesView.renderMessage(data.results[i]);
-        RoomsView.renderRoom(data.results[i]);
       }
 
-      console.log(data);
-      for (var i = 0; i < data.results.length; i++) {
-        var roomname = data.results[i].roomname;
-        MessagesView.renderMessage(data.results[i]);
-        RoomsView.renderRoom(data.results[i]);
-      }
+      var uniqRooms = _.uniq(_.map(data.results, function(message) {
+          return message.roomname;
+        }));
+
+      uniqRooms.forEach(function(room) {
+        Rooms.add(room);
+      });
+
       callback();
     });
   },
+
+
 
   startSpinner: function() {
     App.$spinner.show();
