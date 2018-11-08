@@ -24,7 +24,7 @@ var App = {
     Parse.readAll((data) => {
       // examine the response from the server request:
       //use for loop to parse message
-      for(var i=0; i<data.results.length; i++){
+      for (var i = 0; i < data.results.length; i++) {
         //call upon renderMessage func of class MessagesView
         //extracts data from renderMessage output (aka the message)
         MessagesView.renderMessage(data.results[i]);
@@ -58,7 +58,7 @@ var App = {
       '<': '&lt;',
       '>': '&gt;',
       '"': '&quot;',
-      "'": '&#39;',
+      '\'': '&#39;',
       '/': '&#x2F;',
       '`': '&#x60;',
       '=': '&#x3D;'

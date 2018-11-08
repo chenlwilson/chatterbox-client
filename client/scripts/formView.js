@@ -17,7 +17,7 @@ var FormView = {
       username: App.username,
       text: $( 'input[type=text]').val(),
       roomname: $('select').val()
-    }
+    };
 
     var clearAfterSubmit = function() {
       $('#message').val('');
