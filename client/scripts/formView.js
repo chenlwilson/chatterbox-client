@@ -23,7 +23,7 @@ var FormView = {
     //upon submit, re-render messages in the room of form submit event
     //clear form
     Parse.create(message);
-    RoomsView.selectRoom();
+    RoomsView.selectRoomAjax();
     FormView.$form.trigger('reset');
 
     console.log('click!');

@@ -26,6 +26,7 @@ var App = {
   },
 
   fetch: function(callback = ()=>{}) {
+    //()=>{} is the default callback
     Parse.readAll((data) => {
       console.log(data);
       // examine the response from the server request:

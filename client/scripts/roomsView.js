@@ -27,7 +27,6 @@ var RoomsView = {
     //fetch data from server
     //render only messages with the selected roomname
     Parse.readRoom(RoomsView.$select.val(), (data) => {
-      console.log('roomdata: ' + data);
       RoomsView.renderRoomAjax(data);
     });
   },
